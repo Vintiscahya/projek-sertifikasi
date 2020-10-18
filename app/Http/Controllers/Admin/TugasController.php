@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\kategori;
 use Illuminate\Http\Request;
+use App\taks;
 
-
-class KategoriController extends Controller
+class TugasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class KategoriController extends Controller
     public function index()
     {
         //
-        $pagename = 'Data Kategori';
-        $data = kategori::all();
-        return view('admin.kategori.index',compact('data','pagename'));
+        $pagename = 'Data Tugas';
+        $data = taks::all();
+        return view('admin.tugas.index',compact('data','pagename'));
     }
 
     /**
@@ -30,6 +29,7 @@ class KategoriController extends Controller
     public function create()
     {
         //
+        return view('admin.tugas.create');
     }
 
     /**
