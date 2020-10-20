@@ -11,6 +11,6 @@ class Taks extends Model
         'nama_tugas',
         'id_kategori',
         'ket_tugas',
-        'status_tugas',
+        'status_kategori'
     ];
 }

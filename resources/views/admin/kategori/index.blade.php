@@ -45,12 +45,15 @@
                                 <strong class="card-title">{{$pagename}}</strong>
                             </div>
                             <div class="card-body">
+                            <a href="{{ route('kategori.create') }}" class="btn btn-primary pull-right">Tambah</a>
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
                                             <th>Status</th>
+                                            <th></th>
+                                            <th></th>
                                             
                                         </tr>
                                     </thead>
@@ -60,6 +63,16 @@
                                             <td>{{++$i}}</td>
                                             <td>{{$row->nama_kategori}}</td>
                                             <td>{{$row->status_kategori}}</td>
+                                            <td><a href="{{route('kategori.edit',$row->id)}}" class="btn btn-primary">Edit</a></td>
+                                            <td><form action="{{route('kategori.destroy',$row->id)}}" method="post" onsubmit="return confirm('yakin')">
+                                            @csrf
+                                            @method('DELETE')
+                                            
+ 
+                                            <button class="btn btn-danger" type="submit">Hapus </button>
+                                            </form>
+                                            </td>
+
                                             
                                         </tr>
                                     @endforeach

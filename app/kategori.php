@@ -10,6 +10,6 @@ class kategori extends Model
     protected $fillable = [
         
         'nama_kategori',
-        'status_kategori',
+        'status_kategori'
     ];
 }

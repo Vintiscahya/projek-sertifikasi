@@ -14,7 +14,8 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-<div class="breadcrumbs">
+
+    <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
@@ -41,8 +42,17 @@
 
                     <div class="col-md-12">
                         <div class="card">
+
+                        @if(session()->get('succes'))
+                        <div class="alert alert-success">
+                                 {{session()->get('succes')}}
+                        </div>
+
+
+                        @endif
                             <div class="card-header">
-                                <strong class="card-title">Data Table</strong>
+                                <strong class="card-title">{{$pagename}}</strong>
+                                <a href="{{route('tugas.create')}}" class="btn btn-primary pull-right"> Tambah </a>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -50,26 +60,39 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th>kategori</th>
-                                            <th>keterangan</th>
-                                            <th>status</th>
+                                            <th>Kategori</th>
+                                            <th>Keterangan</th>
+                                            <th>Status</th>
+                                            <th>Edit</th>
+                                            <th>Hapus</th>
+
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                     @foreach($data as $i=>$row)
                                     <tr>
                                             <td>{{++$i}}</td>
                                             <td>{{$row->nama_tugas}}</td>
                                             <td>{{$row->id_kategori}}</td>
                                             <td>{{$row->ket_tugas}}</td>
-                                            <td>{{$row->status_tugas}}</td>
-                                            
-                                        </tr>
+                                            <td>{{$row->status_kategori}}</td>
+                                            <td><a href="{{route('tugas.edit',$row->id)}}" class="btn btn-primary">Edit</a></td>
+                                            <td><form action="{{route('tugas.destroy',$row->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+ 
+
+                                            <button class="btn btn-danger" type="submit">Hapus </button>
+                                            </form>
+                                            </td>
+
+
+
+                                    </tr>
                                     @endforeach
-                                       
-                                    
-                                       
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -80,6 +103,7 @@
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
+
 
     <script src="{{asset('public/admin/vendors/jquery/dist/jquery.min.js')}}"></script>
     <script src="{{asset('public/admin/vendors/popper.js/dist/umd/popper.min.js')}}"></script>
